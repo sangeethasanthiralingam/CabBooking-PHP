@@ -1,10 +1,6 @@
 <div class="card card-outline card-purple shadow rounded-0">
     <div class="card-header">
-  
         <h3 class="card-title">Booking List</h3>
-        <div class="card-tools">
-			<a href="?page=bookings/manage_cab" class="btn btn-flat btn-success btn-sm"><span class="fas fa-plus"></span>  Add New Cab</a>
-		</div>
     </div>
     <div class="card-body">
         <div class="container-fluid">

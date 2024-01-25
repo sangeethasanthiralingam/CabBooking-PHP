@@ -50,7 +50,7 @@
                     <a href="./login.php" class="text-reset text-decoration-none mx-2"><b>Login</b></a> 
                     <a href="./choose.php" class="text-reset text-decoration-none mx-2"><b>Register</b></a>
                     <a href="./driver/login.php" class="text-reset text-decoration-none mx-2"><b>Driver Panel</b></a>
-                    <!-- <a href="./admin/login.php" class="text-reset text-decoration-none mx-2"><b>Admin</b></a> -->
+                    
                   <?php endif; ?>
                 </div>
             </div>

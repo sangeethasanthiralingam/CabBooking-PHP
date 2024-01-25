@@ -17,10 +17,16 @@
                        </div>
                        <div>
                        <input type="text" name="current_place" id=""class="form-control form-control-sm">
+                    
 
                        </div>
+                       <select name="status" id="status">
+                        <option value="1">Available</option>
+                        <option value="0">Busy</option>
+                       </select>
                             </div>
                             <div class="col col-lg-1">
+                          
                                 <input type="submit" value="Submit"class="btn btn-flat btn-info border btn-sm view_data">
                             </div>
 

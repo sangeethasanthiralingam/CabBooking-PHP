@@ -27,8 +27,16 @@
                 </div>
                 <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-xl-3" id="cab_list">
                     <?php 
-                    $cabs = $conn->query("SELECT c.*, cc.name as category FROM `cab_list` c inner join category_list cc on c.category_id = cc.id where c.delete_flag = 0 and c.id not in (SELECT cab_id FROM `booking_list` where `status` in (0,1,2)) order by c.`reg_code`");
-                    while($row= $cabs->fetch_assoc()):
+                   // $cabs = $conn->query("SELECT c.*, cc.name as category FROM `cab_list` c inner join category_list cc on c.category_id = cc.id where c.delete_flag = 0 and c.id not in (SELECT cab_id FROM `booking_list` where `status` in (0,1,2)) order by c.`reg_code`");
+                   $cabs = $conn->query("SELECT c.*, cc.name as category 
+                      FROM `cab_list` c 
+                      INNER JOIN category_list cc ON c.category_id = cc.id 
+                      WHERE c.delete_flag = 0 
+                        AND c.id NOT IN (SELECT cab_id FROM `booking_list` WHERE `status` IN (0,1,2)) 
+                        AND c.avai=1
+                      ORDER BY c.`reg_code`");
+
+                   while($row= $cabs->fetch_assoc()):
                     ?>
                     <a class="col item text-decoration-none text-dark book_cab" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>" data-bodyno="<?php echo $row['body_no'] ?>">
                         <div class="callout callout-primary border-success rounded-0">

@@ -1,10 +1,6 @@
 <div class="card card-outline card-purple shadow rounded-0">
     <div class="card-header">
-  
         <h3 class="card-title">Booking List</h3>
-        <div class="card-tools">
-			<a href="?page=bookings/manage_cab" class="btn btn-flat btn-success btn-sm"><span class="fas fa-plus"></span>  Add New Cab</a>
-		</div>
     </div>
     <div class="card-body">
         <div class="container-fluid">
@@ -17,17 +13,15 @@
                     <col width="20%">
                     <col width="10%">
                     <col width="10%">
-                    <col width="10%">
                 </colgroup>
                 <thead>
                     <tr class="bg-gradient-dark text-light">
                         <th class="text-center">#</th>
-                        <th class="text-center">Booking_id</th>
-                        <th class="text-center">cus</th>
+                        <th class="text-center">Date Booked</th>
+                        <th class="text-center">Ref. Code</th>
                         <th class="text-center">Cab Reg. Code</th>
                         <th class="text-center">Client</th>
                         <th class="text-center">Status</th>
-                        <th class="text-center">Amount</th>
                         <th class="text-center">Action</th>
                     </tr>
                 </thead>
@@ -58,7 +52,6 @@
                                             break;
                                         case 3:
                                             echo "<span class='badge badge-success bg-gradient-success px-3 rounded-pill'>Dropped off</span>";
-                                            // echo "</td><td class='text-center'>".$row['amount']."</td>";
                                             break;
                                         case 4:
                                             echo "<span class='badge badge-danger bg-gradient-danger px-3 rounded-pill'>Cancelled</span>";
@@ -66,8 +59,7 @@
                                     }
                                 ?>
                             </td>
-                            <td><?=$row['amount']?></td>
-                        
+                            </td>
                             <td class="text-center">
                                 <a class="btn btn-flat btn-sm btn-info border view_data" href="javascript:void(0)" data-id="<?= $row['id'] ?>"><i class="fa fa-eye"></i> View</a>
                             </td>
