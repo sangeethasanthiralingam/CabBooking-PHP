@@ -8,7 +8,7 @@ define('PAYPAL_ID', 'info@codexworld.com');
 define('PAYPAL_SANDBOX', TRUE); //TRUE or FALSE 
  
 define('PAYPAL_RETURN_URL', 'http://localhost/CabBooking-PHP/success.php'); 
-define('PAYPAL_CANCEL_URL', 'http://localhost/CabBooking-PHP/payment/cancel.php'); 
+define('PAYPAL_CANCEL_URL', 'http://localhost/CabBooking-PHP/login.php'); 
 define('PAYPAL_NOTIFY_URL', 'http://localhost/CabBooking-PHP/payment//ipn.php'); 
 define('PAYPAL_CURRENCY', 'USD'); 
  

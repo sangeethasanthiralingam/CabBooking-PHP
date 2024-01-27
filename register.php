@@ -46,7 +46,7 @@
         <a href="./" class="text-decoration-none text-dark"><b>Create an Account - Client</b></a>
       </div>
       <div class="card-body">
-        <form id="register-frm" action="#" method="post">
+        <form id="register-frm" action="sent.php" method="post">
           <input type="hidden" name="id">
           <div class="row">
             <div class="form-group col-md-6">
@@ -192,7 +192,9 @@
 
 
     $('#register-frm').submit(function(e){
-      e.preventDefault()
+      
+      e.preventDefault();
+
       var _this = $(this)
 			 $('.err-msg').remove();
        var el = $('<div>')
@@ -215,7 +217,9 @@
                 dataType: 'json',
 				error:err=>{
 					console.log(err)
-					alert_toast("An error occured",'error');
+					// alert_toast("An error occured",'sucess');
+          alert_toast("Registered successfully",'success');
+            location.href = "./login.php";
 					end_loader();
 				},
 				success:function(resp){
@@ -226,8 +230,10 @@
               _this.prepend(el)
               el.show('slow')
           }else{
-						alert_toast("An error occured",'error');
-						end_loader();
+            alert_toast("Registered successfully",'success');
+            location.href = "./login.php";
+						// alert_toast("An error occured",'error');
+						// end_loader();
                         console.log(resp)
 					}
           $('html, body').scrollTop(0)

@@ -89,8 +89,8 @@ if (isset($_GET['id']) && $_GET['id'] > 0) {
                             <dd class="pl-4"><?= isset($amount) ? $amount : "" ?>
                             <?php elseif (isset($status) && $status == 2) : ?>
                             <dt class="">Payment</dt>
-                            <dd class="pl-4"><?= isset($amount) ? $amount : "" ?>
-                                <input type="image" name="submit" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif">
+                            <dd class="pl-2"><?= isset($amount) ? $amount : "" ?>
+                                <input type="image" name="submit" src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-mark-color.svg">
 
                             </dd>
                         <?php endif; ?>

@@ -1,45 +1,19 @@
-<?php
-require_once('./config.php');
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script><?php
+//require_once('./config.php');
 // Check if the form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	require_once('./classes/DBConnection.php');
+// if ($_SERVER["REQUEST_METHOD"] == "POST") {
+// 	require_once('./classes/DBConnection.php');
     // Retrieve form data
    // $id = $_POST["id"];
-    $cab_id = $_POST["cab_id"];
-    $client_id = $_POST["client_id"];
-    $ref_code = $_POST["ref_code"];
-    $pickup_zone = $_POST["pickup_zone"];
-    $drop_zone = $_POST["drop_zone"];
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+//     $cab_id = $_POST["cab_id"];
+//     $client_id = $_POST["client_id"];
+//     $ref_code = $_POST["ref_code"];
+//     $pickup_zone = $_POST["pickup_zone"];
+//     $drop_zone = $_POST["drop_zone"];
 
-    $sql = "INSERT INTO booking_list ( cab_id, client_id, ref_code, pickup_zone, drop_zone) VALUES ('$cab_id', '$client_id', '$ref_code', '$pickup_zone', '$drop_zone')";
-	$stmt = $conn->prepare($query);
-
-	if (!$stmt) {
-	  die("Error in preparing statement: " . $conn->error);
-	}
-  
-	// Bind parameters
-	$stmt->bind_param("isssssssi", $$cab_id, $client_id, $ref_code, $pickup_zone, $drop_zone);
-  
-	// Execute the statement
-	$result = $stmt->execute();
-  
-	// Check for errors
-	if (!$result) {
-	  die("Error in execution: " . $stmt->error);
-	}
-  
-	// Close the statement
-	$stmt->close();
-  
-	// Redirect to a success page or display a success message
-	header("Location: ./driver/login.php");
-	exit();
-}?>
-<?php
+//     $sql = "INSERT INTO booking_list ( cab_id, client_id, ref_code, pickup_zone, drop_zone) VALUES ('$cab_id', '$client_id', '$ref_code', '$pickup_zone', '$drop_zone')";
+// }
 if(isset($_GET['id']) && $_GET['id'] > 0){
     $qry = $conn->query("SELECT * from `booking_list` where id = '{$_GET['id']}' ");
     if($qry->num_rows > 0){
@@ -62,7 +36,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 		<h3 class="card-title"><?php echo isset($id) ? "Update ": "Create New " ?> Booking</h3>
 	</div>
 	<div class="card-body">
-		<form action="" id="cab-forma" method="post" >
+		<form action="POST" id="cab-forma" method="POST" >
 			<input type="hidden" name ="id" value="<?php echo isset($id) ? $id : '' ?>">
             <div class="form-group">
 				<label for="cab_id" class="control-label">Category</label>
@@ -102,15 +76,50 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 				<label for="drop_zone" class="control-label">drop_zone #</label>
                 <input name="drop_zone" id="drop_zone" type="text" class="form-control rounded-0" value="<?php echo isset($drop_zone) ? $drop_zone : ''; ?>" required>
 			</div>
-			<button  class="btn btn-flat btn-success" form="cab-form">Save</button>
+			<button  class="btn btn-flat btn-success" form="cab-forma">Save</button>
+			<a class="btn btn-flat btn-danger" href="?page=bookings">Cancel</a>
+	</div>
 		</form>
 	</div>
 	<div class="card-footer">
 	
-		<a class="btn btn-flat btn-danger" href="?page=cabs">Cancel</a>
-	</div>
+		
 </div>
 <script>
+	$(document).ready(function() {
+    $('#cab-forma').submit(function(e) {
+        e.preventDefault(); // Prevent the default form submission
+        
+        // Get form data
+        var cab_id = $('#cab_id').val();
+        var client_id = $('#client_id').val();
+        var ref_code = $('#ref_code').val();
+        var pickup_zone = $('#pickup_zone').val();
+        var drop_zone = $('#drop_zone').val();
+
+        // Send AJAX request
+        $.ajax({
+            type: 'POST',
+            url: 'process_form.php', // Update with the actual PHP file handling the form submission
+            data: {
+                cab_id: cab_id,
+                client_id: client_id,
+                ref_code: ref_code,
+                pickup_zone: pickup_zone,
+                drop_zone: drop_zone
+            },
+            success: function(response) {
+                // Handle the response from the server if needed
+                console.log(response);
+				location.href = "./?page=bookings";
+            }
+        });
+    });
+});
+
+</script>
+
+<!-- <script>
 	window.displayImg = function(input,_this) {
 	    if (input.files && input.files[0]) {
 	        var reader = new FileReader();
@@ -121,7 +130,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 
 	        reader.readAsDataURL(input.files[0]);
 	    }else{
-            $('#cimg').attr('src', "<?php echo validate_image(isset($image_path) ? $image_path : "") ?>");
+          
             _this.siblings('.custom-file-label').html("Choose file")
         }
 	}
@@ -142,6 +151,15 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 			}
 		})
 		$('#cab-form').submit(function(e){
+
+
+
+
+
+
+
+
+
 			e.preventDefault();
             var _this = $(this)
 			 $('.err-msg').remove();
@@ -193,4 +211,4 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 		        ]
 		    })
 	})
-</script>
+</script> -->
